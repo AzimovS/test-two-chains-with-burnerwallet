@@ -12,7 +12,6 @@ const Home: NextPage = () => {
     functionName: "getCounter",
     watch: true,
   });
-  console.log(totalCounter);
   const { writeContractAsync: writeYourContractAsync } = useScaffoldWriteContract({ contractName: "Counter" });
 
   return (
@@ -24,20 +23,21 @@ const Home: NextPage = () => {
           </h1>
           <p className="text-center">
             <span className="block text-lg mb-2">Your chain: {chainId}</span>
-            <p>Counter: {totalCounter?.toString()}</p>
-            <button
-              className="btn btn-primary"
-              onClick={async () => {
-                try {
-                  await writeYourContractAsync({ functionName: "increment" });
-                } catch (e) {
-                  console.error("Error:", e);
-                }
-              }}
-            >
-              Click
-            </button>
+            Counter: {totalCounter?.toString()}
           </p>
+
+          <button
+            className="btn btn-primary"
+            onClick={async () => {
+              try {
+                await writeYourContractAsync({ functionName: "increment" });
+              } catch (e) {
+                console.error("Error:", e);
+              }
+            }}
+          >
+            Click
+          </button>
         </div>
       </div>
     </>
